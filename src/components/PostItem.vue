@@ -5,13 +5,17 @@
             <div><strong>Описание:</strong> {{ post.body }}</div>
         </div>
         <div class="post_delete">
-            <button>Удалить</button>
+            <custom-button>Удалить</custom-button>
         </div>
     </div>
 </template>
 
 <script>
+import CustomButton from '@/shared/ui/CustomButton.vue';
 export default {
+    components: {
+        CustomButton
+    },
     props: {
         post: {
             type: Object,
@@ -36,8 +40,6 @@ export default {
 .post_delete button {
     background-color: red;
     color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+    font-size: 16px;
 }
 </style>

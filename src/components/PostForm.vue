@@ -1,26 +1,32 @@
 <template>
     <form @submit.prevent class="form_wrapper">
         <h3 class="addPost_title">Создать пост</h3>
-        <input v-model="post.title"
-               class="input"
-               type="text"
-               placeholder="Название"
-        >
-        <input v-model="post.body"
-               class="input"
-               type="text"
-               placeholder="Описание"
-        >
-        <button class="add_button"
-                @click="createPost"
-        >
-            Создать
-        </button>
+        <div class="add_form">
+            <input v-model="post.title"
+                   class="input"
+                   type="text"
+                   placeholder="Название"
+            >
+            <input v-model="post.body"
+                   class="input"
+                   type="text"
+                   placeholder="Описание"
+            >
+            <custom-button class="add_button"
+                           @click="createPost"
+            >
+                Создать
+            </custom-button>
+        </div>
     </form>
 </template>
 
 <script>
+import CustomButton from '@/shared/ui/CustomButton.vue';
 export default {
+    components: {
+        CustomButton
+    },
     data() {
         return {
             post: {
@@ -61,12 +67,17 @@ export default {
 .form_wrapper {
     margin-bottom: 10px;
 }
+.add_form {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 .addPost_title {
     margin-bottom: 5px;
 }
 
 .input {
-    padding: 5px;
+    padding: 10px;
     margin-right: 5px;
 }
 
