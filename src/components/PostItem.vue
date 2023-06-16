@@ -11,11 +11,7 @@
 </template>
 
 <script>
-import CustomButton from '@/shared/ui/CustomButton.vue';
 export default {
-    components: {
-        CustomButton
-    },
     props: {
         post: {
             type: Object,
