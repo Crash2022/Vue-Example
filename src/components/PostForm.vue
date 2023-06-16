@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent>
+    <form @submit.prevent class="form_wrapper">
         <h3 class="addPost_title">Создать пост</h3>
         <input v-model="post.title"
                class="input"
@@ -58,6 +58,9 @@ export default {
 </script>
 
 <style scoped>
+.form_wrapper {
+    margin-bottom: 10px;
+}
 .addPost_title {
     margin-bottom: 5px;
 }
