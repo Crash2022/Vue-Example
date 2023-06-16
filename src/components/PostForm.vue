@@ -72,6 +72,7 @@ export default {
 
 .add_button {
     padding: 5px;
+    cursor: pointer;
 }
 </style>
 

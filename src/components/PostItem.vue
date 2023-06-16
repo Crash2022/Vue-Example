@@ -1,7 +1,12 @@
 <template>
     <div class="post">
-        <div><strong>Название:</strong> {{ post.title }}</div>
-        <div><strong>Описание:</strong> {{ post.body }}</div>
+        <div class="post_content">
+            <div><strong>Название:</strong> {{ post.title }}</div>
+            <div><strong>Описание:</strong> {{ post.body }}</div>
+        </div>
+        <div class="post_delete">
+            <button>Удалить</button>
+        </div>
     </div>
 </template>
 
@@ -21,5 +26,18 @@ export default {
     border: 2px solid green;
     padding: 10px;
     margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.post_content {
+
+}
+.post_delete button {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
 }
 </style>
