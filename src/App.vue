@@ -1,48 +1,48 @@
 <template>
     <div class="app">
-        <form>
-            <h3 class="addPost_title">Создать пост</h3>
-            <input
-                    v-bind:value="title"
-                    @input="title = $event.target.value"
-                    class="input"
-                    type="text"
-                    placeholder="Название"
-            >
-            <input v-bind:value="body"
-                   @input="body = $event.target.value"
-                   class="input"
-                   type="text"
-                   placeholder="Описание"
-            >
-            <button class="add_button" @click="createPost">
-                Создать
-            </button>
-        </form>
-        <div class="post" v-for="post of posts">
-            <div><strong>Название:</strong> {{ post.title }}</div>
-            <div><strong>Описание:</strong> {{ post.body }}</div>
-        </div>
+        <post-form @create="createPost"
+                   :title="title"
+                   :body="body"
+        />
+        <post-list v-bind:posts="posts"/>
     </div>
 </template>
 
 <script>
+import PostForm from '@/components/PostForm.vue';
+import PostList from '@/components/PostList.vue';
+
 export default {
+    components: {
+        PostList, PostForm
+    },
     data() {
         return {
             posts: [
                 {id: 1, title: 'Javascript', body: 'Описание 1'},
                 {id: 2, title: 'React', body: 'Описание 2'},
-                {id: 3, title: 'Angular', body: 'Описание 3'},
+                {id: 3, title: 'Angular', body: 'Описание 3'}
             ],
             title: '',
             body: '',
         };
     },
     methods: {
-        createPost() {
+        createPost(post) {
+            this.posts.push(post)
+        }
 
-        },
+        // // createPost(e) {
+        // createPost() {
+        //     // e.preventDefault() // можно написать здесь действие на сабмит
+        //     const newPost = {
+        //         id: Date.now(),
+        //         title: this.title,
+        //         body: this.body
+        //     }
+        //     this.posts.push(newPost)
+        // },
+
         // @input="inputTitle" // вариант для инпута
         // inputTitle(e) {
         //     this.title = e.target.value
@@ -66,22 +66,4 @@ export default {
     padding: 20px;
 }
 
-.addPost_title {
-    margin-bottom: 5px;
-}
-
-.post {
-    border: 2px solid green;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-.input {
-    padding: 5px;
-    margin-right: 5px;
-}
-
-.add_button {
-    padding: 5px;
-}
 </style>
