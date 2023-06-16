@@ -2,14 +2,15 @@
     <div class="app">
         <form>
             <h3 class="addPost_title">Создать пост</h3>
-            <input v-bind:value="title"
-                   @input="inputTitle"
-                   class="input"
-                   type="text"
-                   placeholder="Название"
+            <input
+                    v-bind:value="title"
+                    @input="title = $event.target.value"
+                    class="input"
+                    type="text"
+                    placeholder="Название"
             >
             <input v-bind:value="body"
-                   @input="inputBody"
+                   @input="body = $event.target.value"
                    class="input"
                    type="text"
                    placeholder="Описание"
@@ -42,12 +43,14 @@ export default {
         createPost() {
 
         },
-        inputTitle(e) {
-            this.title = e.target.value
-        },
-        inputBody(e) {
-            this.body = e.target.value
-        }
+        // @input="inputTitle" // вариант для инпута
+        // inputTitle(e) {
+        //     this.title = e.target.value
+        // },
+        // @input="inputBody" // вариант для инпута
+        // inputBody(e) {
+        //     this.body = e.target.value
+        // }
     }
 };
 </script>
