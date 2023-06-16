@@ -42,19 +42,16 @@ export default {
     // }
     methods: {
         createPost() {
-            this.post.id=Date.now()
-            // this.posts.push(newPost)
+            this.post.id = Date.now()
 
             // подписка на событие (для передачи из дочерней в родительскую)
-            // название 'create' используется в родительской компонентне
+            // название 'create' используется в родительской компонентне (@create)
             // вторым параметром принимает post
             this.$emit('create', this.post)
             this.post = {
                 title: '',
                 body: '',
             }
-            // this.title = ''
-            // this.body = ''
         },
     }
 };
