@@ -30,6 +30,8 @@
         />
         <h3 v-else class="loading_posts">Загрузка постов...</h3>
 
+        <div class="observer" ref="observer"></div>
+
         <!--        <custom-pagination v-model:page="page"-->
         <!--                           v-model:totalPages="totalPages"-->
         <!--                           @changePage="changePage"-->
@@ -77,7 +79,8 @@ export default {
             selectedSort: '', // название метода (для watch одинаковое)
             searchQuery: '',
             page: 1, // текущая страница
-            limit: 5, // лимит постов на странице
+            // limit: 5, // лимит постов на странице
+            limit: 7,
             totalPages: 0 // всего страниц
         };
     },
@@ -96,9 +99,30 @@ export default {
         //     this.page = pageNumber
         //     // this.getPosts() // перенесли в watch page() (как иной вариант)
         // },
-        async getPosts() {
+
+        // постраничный вывод постов
+        // async getPosts() {
+        //     try {
+        //         this.isPostsLoading = true
+        //         const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
+        //             params: {
+        //                 _limit: this.limit,
+        //                 _page: this.page
+        //             }
+        //         })
+        //         this.totalPages = Math.ceil(response.headers['x-total-count'] / this.limit)
+        //         this.posts = response.data
+        //         this.isPostsLoading = false
+        //     } catch(error) {
+        //         console.log(error)
+        //     } finally {
+        //         this.isPostsLoading = false
+        //     }
+        // },
+
+        async getMorePosts() {
             try {
-                this.isPostsLoading = true
+                this.page += 1
                 const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
                     params: {
                         _limit: this.limit,
@@ -106,12 +130,9 @@ export default {
                     }
                 })
                 this.totalPages = Math.ceil(response.headers['x-total-count'] / this.limit)
-                this.posts = response.data
-                this.isPostsLoading = false
+                this.posts = [...this.posts, ...response.data]
             } catch(error) {
                 console.log(error)
-            } finally {
-                this.isPostsLoading = false
             }
         },
 
@@ -137,7 +158,23 @@ export default {
     },
     // аналог useEffect
     mounted() {
-        this.getPosts()
+        // this.getPosts()
+
+        this.getMorePosts()
+
+        const myObserver = this.$refs.observer
+        const options = {
+            // root: document.querySelector('#scrollArea'),
+            rootMargin: '0px',
+            threshold: 1.0
+        }
+        const callback = (entries, observer) => {
+            if (entries[0].isIntersecting && this.page < this.totalPages) {
+                this.getMorePosts()
+            }
+        }
+        const observer = new IntersectionObserver(callback, options)
+        observer.observe(myObserver)
     },
     // следит за изменениями, мутирует исходный массив
     watch: {
@@ -182,6 +219,7 @@ export default {
 
 .app {
     padding: 20px;
+    overflow-x: hidden;
 }
 .loading_posts {
     text-align: center;
@@ -207,6 +245,10 @@ export default {
     display: flex;
 }
 
+.observer {
+    /*height: 30px;*/
+    /*background-color: yellow;*/
+}
 
 /*.pagination_wrapper {*/
 /*    display: flex;*/
