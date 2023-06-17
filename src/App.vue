@@ -30,7 +30,18 @@
         />
         <h3 v-else class="loading_posts">Загрузка постов...</h3>
 
-        <pagination/>
+        <div class="pagination_wrapper">
+            <div class="page_item"
+                 :class="{
+                     'current_page': pageNumber === this.page
+                 }"
+                 :key="pageNumber"
+                 v-for="pageNumber in totalPages"
+                 @click="changePage(pageNumber)"
+            >
+                {{pageNumber}}
+            </div>
+        </div>
     </div>
 </template>
 
@@ -77,6 +88,10 @@ export default {
         openModal() {
             this.isModalOpen = true
         },
+        changePage(pageNumber) {
+            this.page = pageNumber
+            this.getPosts()
+        },
         async getPosts() {
             try {
                 this.isPostsLoading = true
@@ -94,7 +109,7 @@ export default {
             } finally {
                 this.isPostsLoading = false
             }
-        }
+        },
 
         // // createPost(e) {
         // createPost() {
@@ -143,7 +158,7 @@ export default {
         },
         sortedAndSearchedPosts() {
             return this.sortedPosts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
-        }
+        },
     },
 };
 </script>
@@ -161,6 +176,7 @@ export default {
 .loading_posts {
     text-align: center;
     margin-top: 50px;
+    margin-bottom: 20px;
     font-size: 30px;
 }
 
@@ -179,6 +195,27 @@ export default {
 }
 .sort_select {
     display: flex;
-    /*justify-content: flex-end;*/
+}
+
+
+.pagination_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.page_item {
+    border: 1px solid green;
+    font-size: 20px;
+    padding: 5px;
+}
+.page_item:hover {
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}
+.current_page {
+    color: white;
+    background-color: green;
 }
 </style>

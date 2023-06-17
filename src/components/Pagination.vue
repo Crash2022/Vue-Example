@@ -24,4 +24,13 @@ export default {
     font-size: 20px;
     padding: 5px;
 }
+.page_item:hover {
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}
+.current_page {
+    color: white;
+    background-color: green;
+}
 </style>
