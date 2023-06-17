@@ -18,7 +18,9 @@
             />
         </div>
 
-        <post-list v-bind:posts="posts"
+        <!--        обычный метод-->
+        <!--        v-bind:posts="posts"-->
+        <post-list v-bind:posts="sortedPosts"
                    @delete="deletePost"
                    v-if="!isPostsLoading"
         />
@@ -100,20 +102,29 @@ export default {
     mounted() {
         this.getPosts()
     },
-    // следить за изменениями
+    // следит за изменениями, мутирует исходный массив
     watch: {
-        // название такое же, как и у переменной для значения
-        selectedSort(newValue) {
-            // console.log(newValue)
-            this.posts.sort((post1, post2) => {
-                return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])
-            })
-        },
-        // ещё один пример
-        // isModalOpen(value) {
-        //     console.log(value)
-        // }
-    }
+        // // название такое же, как и у переменной для значения
+        // selectedSort(newValue) {
+        //     // console.log(newValue)
+        //     this.posts.sort((post1, post2) => {
+        //         // можно записать newValue
+        //         return post1[newValue].localeCompare(post2[newValue])
+        //         // return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])
+        //     })
+        // },
+        // // ещё один пример
+        // // isModalOpen(value) {
+        // //     console.log(value)
+        // // }
+    },
+    computed: {
+        // название любое, возвращает новый массив
+        sortedPosts() {
+          return [...this.posts].sort((post1, post2) => {
+              return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])})
+        }
+    },
 };
 </script>
 
