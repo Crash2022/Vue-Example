@@ -1,7 +1,8 @@
 import { createApp } from 'vue'
 import App from '@/App.vue';
-import components from '@/shared/ui'
 import router from '@/router/router';
+import components from '@/shared/ui'
+import directives from '@/directives';
 
 const app = createApp(App)
 
@@ -9,5 +10,10 @@ const app = createApp(App)
 components.forEach(comp => {
     app.component(comp.name, comp)
 })
+
+directives.forEach(dir => {
+    app.directive(dir.name, dir)
+})
+// app.directive('intersection', VIntersection)
 
 app.use(router).mount('#app')

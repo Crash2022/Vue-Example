@@ -30,7 +30,9 @@
         />
         <h3 v-else class="loading_posts">Загрузка постов...</h3>
 
-        <div class="observer" ref="observer"></div>
+        <!--        вариант observer без директивы-->
+        <!--        <div class="observer" ref="observer"></div>-->
+        <div class="observer" v-intersection="getMorePosts"></div>
 
         <!--        <custom-pagination v-model:page="page"-->
         <!--                           v-model:totalPages="totalPages"-->
@@ -162,18 +164,19 @@ export default {
 
         this.getMorePosts()
 
-        const myObserver = this.$refs.observer
-        const options = {
-            rootMargin: '0px',
-            threshold: 1.0
-        }
-        const callback = (entries, observer) => {
-            if (entries[0].isIntersecting && this.page < this.totalPages) {
-                this.getMorePosts()
-            }
-        }
-        const observer = new IntersectionObserver(callback, options)
-        observer.observe(myObserver)
+        // observer без кастомной директивы
+        // const myObserver = this.$refs.observer
+        // const options = {
+        //     rootMargin: '0px',
+        //     threshold: 1.0
+        // }
+        // const callback = (entries, observer) => {
+        //     if (entries[0].isIntersecting && this.page < this.totalPages) {
+        //         this.getMorePosts()
+        //     }
+        // }
+        // const observer = new IntersectionObserver(callback, options)
+        // observer.observe(myObserver)
     },
     // следит за изменениями, мутирует исходный массив
     watch: {

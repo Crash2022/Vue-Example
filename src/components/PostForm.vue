@@ -5,6 +5,7 @@
             <custom-input v-model="post.title"
                           type="text"
                           placeholder="Название"
+                          v-focus
             />
             <custom-input v-model="post.body"
                           type="text"
