@@ -132,7 +132,7 @@ export default {
               return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])})
         },
         sortedAndSearchedPosts() {
-            return this.sortedPosts.filter(post => post.title.includes(this.searchQuery))
+            return this.sortedPosts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
         }
     },
 };
