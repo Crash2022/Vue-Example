@@ -101,25 +101,25 @@ export default {
         // },
 
         // постраничный вывод постов
-        // async getPosts() {
-        //     try {
-        //         this.isPostsLoading = true
-        //         const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
-        //             params: {
-        //                 _limit: this.limit,
-        //                 _page: this.page
-        //             }
-        //         })
-        //         this.totalPages = Math.ceil(response.headers['x-total-count'] / this.limit)
-        //         this.posts = response.data
-        //         this.isPostsLoading = false
-        //     } catch(error) {
-        //         console.log(error)
-        //     } finally {
-        //         this.isPostsLoading = false
-        //     }
-        // },
-
+        async getPosts() {
+            try {
+                this.isPostsLoading = true
+                const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
+                    params: {
+                        _limit: this.limit,
+                        _page: this.page
+                    }
+                })
+                this.totalPages = Math.ceil(response.headers['x-total-count'] / this.limit)
+                this.posts = response.data
+                this.isPostsLoading = false
+            } catch(error) {
+                console.log(error)
+            } finally {
+                this.isPostsLoading = false
+            }
+        },
+        // бесконечный скроллинг
         async getMorePosts() {
             try {
                 this.page += 1
@@ -158,13 +158,12 @@ export default {
     },
     // аналог useEffect
     mounted() {
-        // this.getPosts()
+        this.getPosts()
 
         this.getMorePosts()
 
         const myObserver = this.$refs.observer
         const options = {
-            // root: document.querySelector('#scrollArea'),
             rootMargin: '0px',
             threshold: 1.0
         }
@@ -246,7 +245,7 @@ export default {
 }
 
 .observer {
-    /*height: 30px;*/
+    height: 30px;
     /*background-color: yellow;*/
 }
 
