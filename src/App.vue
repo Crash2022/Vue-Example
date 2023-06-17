@@ -32,9 +32,9 @@ export default {
     data() {
         return {
             posts: [
-                {id: 1, title: 'Javascript', body: 'Описание 1'},
-                {id: 2, title: 'React', body: 'Описание 2'},
-                {id: 3, title: 'Angular', body: 'Описание 3'}
+                // {id: 1, title: 'Javascript', body: 'Описание 1'},
+                // {id: 2, title: 'React', body: 'Описание 2'},
+                // {id: 3, title: 'Angular', body: 'Описание 3'}
             ],
             isModalOpen: false
         };
@@ -79,6 +79,9 @@ export default {
         // inputBody(e) {
         //     this.body = e.target.value
         // }
+    },
+    mounted() {
+        this.getPosts()
     }
 };
 </script>
