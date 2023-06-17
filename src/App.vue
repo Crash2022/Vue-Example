@@ -104,7 +104,10 @@ export default {
     watch: {
         // название такое же, как и у переменной для значения
         selectedSort(newValue) {
-            console.log(newValue)
+            // console.log(newValue)
+            this.posts.sort((post1, post2) => {
+                return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])
+            })
         },
         // ещё один пример
         // isModalOpen(value) {
