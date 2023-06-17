@@ -24,11 +24,5 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    /*background-color: red;*/
-    /*color: white;*/
-    /*padding: 10px;*/
-    /*border: none;*/
-    /*cursor: pointer;*/
 }
 </style>

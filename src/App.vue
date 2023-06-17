@@ -6,7 +6,9 @@
 
         <div class="addPost">
             <div class="search_input">
-                <custom-input placeholder="Поиск..."/>
+                <custom-input placeholder="Поиск поста..."
+                              v-model="searchQuery"
+                />
             </div>
             <div class="sort_select">
                 <custom-select v-model="selectedSort"
@@ -22,7 +24,7 @@
         <!--        v-bind:posts="posts"-->
 
         <!--        с использованием computed-->
-        <post-list v-bind:posts="sortedPosts"
+        <post-list v-bind:posts="sortedAndSearchedPosts"
                    @delete="deletePost"
                    v-if="!isPostsLoading"
         />
@@ -57,6 +59,7 @@ export default {
                 {value: 'body', name: 'По описанию'},
             ],
             selectedSort: '', // название метода для watch одинаковое
+            searchQuery: ''
         };
     },
     methods: {
@@ -127,6 +130,9 @@ export default {
         sortedPosts() {
           return [...this.posts].sort((post1, post2) => {
               return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])})
+        },
+        sortedAndSearchedPosts() {
+            return this.sortedPosts.filter(post => post.title.includes(this.searchQuery))
         }
     },
 };
