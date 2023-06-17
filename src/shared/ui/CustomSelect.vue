@@ -3,7 +3,7 @@
             :value="modelValue"
             @change="changeOption"
     >
-        <option disabled value="">Сортировка по...</option>
+        <option disabled value="">Сортировка...</option>
         <option v-for="option in options"
                 :key="option.value"
                 :value="option.value"

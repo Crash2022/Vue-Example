@@ -6,7 +6,7 @@
 
         <div class="addPost">
             <div class="search_input">
-                <custom-input placeholder="Поиск поста..."
+                <custom-input placeholder="Поиск поста по названию..."
                               v-model="searchQuery"
                 />
             </div>
