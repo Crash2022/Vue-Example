@@ -5,6 +5,11 @@
             <div><strong>Название:</strong> {{ post.title }}</div>
             <div><strong>Описание:</strong> {{ post.body }}</div>
         </div>
+        <div class="post_open">
+            <custom-button @click="$router.push(`/posts/${post.id}`)">
+                Открыть
+            </custom-button>
+        </div>
         <div class="post_delete">
             <custom-button @click="$emit('delete', post)">
                 Удалить
@@ -36,6 +41,14 @@ export default {
 }
 .post_content {
 
+}
+.post_open button {
+    background-color: orange;
+    color: black;
+}
+.post_open button:hover {
+    background-color: cornflowerblue;
+    color: white;
 }
 .post_delete button {
     background-color: transparent;
