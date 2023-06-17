@@ -59,24 +59,26 @@ export default {
 
 <style scoped>
 .form_wrapper {
-    margin-bottom: 10px;
+
+}
+.addPost_title {
+    text-align: center;
+    margin-bottom: 20px;
 }
 .add_form {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 5px;
 }
-.addPost_title {
-    margin-bottom: 5px;
+.add_form input {
+    width: 100%;
 }
-
-.input {
-    margin-right: 5px;
-}
-
 .add_button {
     padding: 5px;
     cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
 }
 </style>
 

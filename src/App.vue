@@ -1,9 +1,11 @@
 <template>
     <div class="app">
-        <post-form @create="createPost"
-                   :title="title"
-                   :body="body"
-        />
+        <custom-modal show="true">
+            <post-form @create="createPost"
+                       :title="title"
+                       :body="body"
+            />
+        </custom-modal>
         <post-list v-bind:posts="posts"
                    @delete="deletePost"
         />
