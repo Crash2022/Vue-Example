@@ -18,17 +18,17 @@ export default {
     name: 'custom-pagination',
     props: {
         page: {
-            type: Number
+            type: Number,
+            default: 1
         },
         totalPages: {
-            type: Number
+            type: Number,
+            default: 0
         }
     },
     methods: {
         changePage(pageNumber) {
-            this.page = pageNumber
-            this.$emit('changePage', this.page, this.totalPages)
-            // this.getPosts()
+            this.$emit('changePage', pageNumber, this.totalPages)
         },
     }
 }
