@@ -36,8 +36,14 @@ export default {
 
 }
 .post_delete button {
+    background-color: transparent;
+    color: black;
+    border: 1px solid green;
+    font-size: 16px;
+}
+.post_delete button:hover {
     background-color: red;
     color: white;
-    font-size: 16px;
+    /*border: 1px solid green;*/
 }
 </style>

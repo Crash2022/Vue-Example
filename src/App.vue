@@ -1,6 +1,6 @@
 <template>
     <div class="app">
-        <custom-modal show="true">
+        <custom-modal>
             <post-form @create="createPost"
                        :title="title"
                        :body="body"
