@@ -2,16 +2,14 @@
     <form @submit.prevent class="form_wrapper">
         <h3 class="addPost_title">Создать пост</h3>
         <div class="add_form">
-            <input v-model="post.title"
-                   class="input"
-                   type="text"
-                   placeholder="Название"
-            >
-            <input v-model="post.body"
-                   class="input"
-                   type="text"
-                   placeholder="Описание"
-            >
+            <custom-input v-model="post.title"
+                          type="text"
+                          placeholder="Название"
+            />
+            <custom-input v-model="post.body"
+                          type="text"
+                          placeholder="Описание"
+            />
             <custom-button class="add_button"
                            @click="createPost"
             >
@@ -73,7 +71,6 @@ export default {
 }
 
 .input {
-    padding: 10px;
     margin-right: 5px;
 }
 
