@@ -34,7 +34,7 @@ export default {
             this.posts.push(post)
         },
         deletePost(post) {
-            this.posts.filter(p => p.id !== post.id)
+            this.posts = this.posts.filter(p => p.id !== post.id)
         }
 
         // // createPost(e) {
