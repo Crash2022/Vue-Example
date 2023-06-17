@@ -7,8 +7,7 @@
                    @delete="$emit('delete', post)"
         />
     </div>
-    <h3 v-else class="loading_posts">Загрузка постов...</h3>
-<!--    <h3 v-else class="no_posts">Постов нет!</h3>-->
+    <h3 v-else class="no_posts">Постов нет!</h3>
 </template>
 
 <script>
@@ -29,11 +28,6 @@ export default {
 .post_title {
     text-align: center;
     margin-top: 20px;
-}
-.loading_posts {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 30px;
 }
 .no_posts {
     color: red;

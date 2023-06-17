@@ -5,16 +5,19 @@
         </custom-modal>
 
         <div class="addPost">
-            <custom-button @click="getPosts">
-                Получить посты
-            </custom-button>
+<!--            <custom-button @click="getPosts">-->
+<!--                Получить посты-->
+<!--            </custom-button>-->
             <custom-button @click="openModal">
                 Добавить пост
             </custom-button>
         </div>
+
         <post-list v-bind:posts="posts"
                    @delete="deletePost"
+                   v-if="!isPostsLoading"
         />
+        <h3 v-else class="loading_posts">Загрузка постов...</h3>
     </div>
 </template>
 
@@ -36,7 +39,8 @@ export default {
                 // {id: 2, title: 'React', body: 'Описание 2'},
                 // {id: 3, title: 'Angular', body: 'Описание 3'}
             ],
-            isModalOpen: false
+            isModalOpen: false,
+            isPostsLoading: false,
         };
     },
     methods: {
@@ -52,11 +56,14 @@ export default {
         },
         async getPosts() {
             try {
+                this.isPostsLoading = true
                 const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=7')
-                // console.log(response)
                 this.posts = response.data
+                this.isPostsLoading = false
             } catch(error) {
                 console.log(error)
+            } finally {
+                this.isPostsLoading = false
             }
         }
 
@@ -101,6 +108,12 @@ export default {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+}
+
+.loading_posts {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 30px;
 }
 
 </style>
