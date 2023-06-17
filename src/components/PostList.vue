@@ -1,5 +1,5 @@
 <template>
-    <div v-if="posts.length > 0">
+    <div v-if="posts.length > 0" class="postList_wrapper">
         <h3 class="post_title">Список постов</h3>
         <transition-group name="posts_list">
             <post-item v-for="post in posts"
@@ -27,6 +27,9 @@ export default {
 </script>
 
 <style scoped>
+.postList_wrapper {
+    margin-bottom: 10px;
+}
 .post_title {
     text-align: center;
     margin-top: 20px;

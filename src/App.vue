@@ -29,21 +29,22 @@
                    v-if="!isPostsLoading"
         />
         <h3 v-else class="loading_posts">Загрузка постов...</h3>
+
+        <pagination/>
     </div>
 </template>
 
 <script>
 import PostForm from '@/components/PostForm.vue';
 import PostList from '@/components/PostList.vue';
-import CustomButton from "@/shared/ui/CustomButton.vue";
+import Pagination from "@/components/Pagination.vue";
 import axios from "axios";
-import CustomInput from "@/shared/ui/CustomInput.vue";
 
 export default {
     components: {
-        CustomInput,
-        CustomButton,
-        PostList, PostForm
+        PostList,
+        PostForm,
+        Pagination
     },
     data() {
         return {
@@ -59,7 +60,10 @@ export default {
                 {value: 'body', name: 'По описанию'},
             ],
             selectedSort: '', // название метода для watch одинаковое
-            searchQuery: ''
+            searchQuery: '',
+            page: 1, // текущая страница
+            limit: 5, // лимит постов на странице
+            totalPages: 0 // всего страниц
         };
     },
     methods: {
@@ -76,7 +80,13 @@ export default {
         async getPosts() {
             try {
                 this.isPostsLoading = true
-                const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=7')
+                const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
+                    params: {
+                        _limit: this.limit,
+                        _page: this.page
+                    }
+                })
+                this.totalPages = Math.ceil(response.headers['x-total-count'] / this.limit)
                 this.posts = response.data
                 this.isPostsLoading = false
             } catch(error) {
