@@ -72,9 +72,9 @@ export default {
                 // {id: 3, title: 'Angular', body: 'Описание 3'}
             ],
             sortOptions: [
+                {value: 'id', name: 'По порядку'},
                 {value: 'title', name: 'По названию'},
                 {value: 'body', name: 'По описанию'},
-                // {value: 'id', name: 'По порядку'},
             ],
             selectedSort: '', // название метода (для watch одинаковое)
             searchQuery: '',
@@ -198,9 +198,15 @@ export default {
     },
     computed: {
         // название любое, возвращает новый массив
+        // без сортировки по айди
+        // sortedPosts() {
+        //   return [...this.posts].sort((post1, post2) => {
+        //       return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])})
+        // },
+
+        // с сортировкой по айди
         sortedPosts() {
-          return [...this.posts].sort((post1, post2) => {
-              return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])})
+            return [...this.posts].sort((a, b) => a[this.selectedSort] < b[this.selectedSort] ? -1 : 1)
         },
         sortedAndSearchedPosts() {
             return this.sortedPosts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
