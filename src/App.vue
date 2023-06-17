@@ -12,6 +12,11 @@
                 Добавить пост
             </custom-button>
         </div>
+        <div class="sort_select">
+            <custom-select v-model="selectedSort"
+                           :options="sortOptions"
+            />
+        </div>
 
         <post-list v-bind:posts="posts"
                    @delete="deletePost"
@@ -34,13 +39,18 @@ export default {
     },
     data() {
         return {
+            isModalOpen: false,
+            isPostsLoading: false,
             posts: [
                 // {id: 1, title: 'Javascript', body: 'Описание 1'},
                 // {id: 2, title: 'React', body: 'Описание 2'},
                 // {id: 3, title: 'Angular', body: 'Описание 3'}
             ],
-            isModalOpen: false,
-            isPostsLoading: false,
+            sortOptions: [
+                {value: 'title', name: 'По названию'},
+                {value: 'body', name: 'По описанию'},
+            ],
+            selectedSort: '', // название метода для watch одинаковое
         };
     },
     methods: {
@@ -89,6 +99,17 @@ export default {
     },
     mounted() {
         this.getPosts()
+    },
+    // следить за изменениями
+    watch: {
+        // название такое же, как и у переменной для значения
+        selectedSort(newValue) {
+            console.log(newValue)
+        },
+        // ещё один пример
+        // isModalOpen(value) {
+        //     console.log(value)
+        // }
     }
 };
 </script>
@@ -107,7 +128,13 @@ export default {
 .addPost {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    /*gap: 10px;*/
+    margin-bottom: 10px;
+}
+
+.sort_select {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .loading_posts {
