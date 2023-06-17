@@ -1,6 +1,6 @@
 <template>
-    <div class="modal_window" v-if="show">
-        <div class="modal_content">
+    <div class="modal_window" v-if="show" @click="closeModal">
+        <div @click.stop class="modal_content">
             <slot></slot>
         </div>
     </div>
@@ -8,12 +8,17 @@
 
 <script>
 export default {
-  name: 'custom-modal',
+    name: 'custom-modal',
     props: {
-      show: {
-          type: Boolean,
-          default: false
-      }
+        show: {
+            type: Boolean,
+            default: false
+        }
+    },
+    methods: {
+        closeModal() {
+            this.$emit('update:show', false)
+        }
     }
 }
 </script>
@@ -28,6 +33,7 @@ export default {
     background: rgba(0, 0, 0, 0.5);
     display: flex;
 }
+
 .modal_content {
     margin: auto;
     padding: 20px;

@@ -14,12 +14,15 @@ export default {
 .custom_btn {
     background-color: green;
     color: white;
-    /*padding: 10px;*/
+    padding: 10px;
     border: none;
     cursor: pointer;
     height: 38px;
     min-width: 100px;
     font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     /*background-color: red;*/
     /*color: white;*/

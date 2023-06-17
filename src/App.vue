@@ -1,11 +1,12 @@
 <template>
     <div class="app">
-        <custom-modal>
-            <post-form @create="createPost"
-                       :title="title"
-                       :body="body"
-            />
+        <custom-modal v-model:show="isModalOpen">
+            <post-form @create="createPost"/>
         </custom-modal>
+
+        <custom-button @click="openModal">
+            Добавить пост
+        </custom-button>
         <post-list v-bind:posts="posts"
                    @delete="deletePost"
         />
@@ -15,9 +16,11 @@
 <script>
 import PostForm from '@/components/PostForm.vue';
 import PostList from '@/components/PostList.vue';
+import CustomButton from "@/shared/ui/CustomButton.vue";
 
 export default {
     components: {
+        CustomButton,
         PostList, PostForm
     },
     data() {
@@ -27,8 +30,7 @@ export default {
                 {id: 2, title: 'React', body: 'Описание 2'},
                 {id: 3, title: 'Angular', body: 'Описание 3'}
             ],
-            title: '',
-            body: '',
+            isModalOpen: false
         };
     },
     methods: {
@@ -37,6 +39,9 @@ export default {
         },
         deletePost(post) {
             this.posts = this.posts.filter(p => p.id !== post.id)
+        },
+        openModal() {
+            this.isModalOpen = true
         }
 
         // // createPost(e) {
