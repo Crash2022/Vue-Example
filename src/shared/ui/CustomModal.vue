@@ -40,5 +40,7 @@ export default {
     background-color: white;
     min-width: 300px;
     min-height: 200px;
+    /*border: 1px solid gray;*/
+    box-shadow: 1px 2px 10px black;
 }
 </style>

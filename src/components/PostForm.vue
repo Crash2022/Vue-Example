@@ -29,17 +29,6 @@ export default {
             }
         };
     },
-    // можно так передавать пропсы?
-    // props: {
-    //     title: {
-    //         type: String,
-    //         required: true
-    //     },
-    //     body: {
-    //         type: String,
-    //         required: true
-    //     }
-    // }
     methods: {
         createPost() {
             this.post.id = Date.now()
