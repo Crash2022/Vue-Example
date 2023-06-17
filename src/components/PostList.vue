@@ -37,15 +37,14 @@ export default {
     margin-top: 20px;
 }
 
-.posts_list-move, /* apply transition to moving elements */
+.posts_list-move, /*для сортировки*/
 .posts_list-enter-active,
 .posts_list-leave-active {
     transition: all 0.4s ease;
 }
-
 .posts_list-enter-from,
 .posts_list-leave-to {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(130px);
 }
 </style>
