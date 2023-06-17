@@ -32,6 +32,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 .post_content {
 

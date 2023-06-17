@@ -30,32 +30,34 @@
         />
         <h3 v-else class="loading_posts">Загрузка постов...</h3>
 
-        <div class="pagination_wrapper">
-            <div class="page_item"
-                 :class="{
-                     'current_page': pageNumber === this.page
-                 }"
-                 :key="pageNumber"
-                 v-for="pageNumber in totalPages"
-                 @click="changePage(pageNumber)"
-            >
-                {{pageNumber}}
-            </div>
-        </div>
+        <custom-pagination v-model:page="page"
+                           v-model:totalPages="totalPages"
+                           @changePage="changePage"
+        />
+        <!--        <div class="pagination_wrapper">-->
+        <!--            <div class="page_item"-->
+        <!--                 :class="{-->
+        <!--                     'current_page': pageNumber === this.page-->
+        <!--                 }"-->
+        <!--                 :key="pageNumber"-->
+        <!--                 v-for="pageNumber in totalPages"-->
+        <!--                 @click="changePage(pageNumber)"-->
+        <!--            >-->
+        <!--                {{pageNumber}}-->
+        <!--            </div>-->
+        <!--        </div>-->
     </div>
 </template>
 
 <script>
 import PostForm from '@/components/PostForm.vue';
 import PostList from '@/components/PostList.vue';
-import Pagination from "@/components/Pagination.vue";
 import axios from "axios";
 
 export default {
     components: {
         PostList,
         PostForm,
-        Pagination
     },
     data() {
         return {
@@ -69,8 +71,9 @@ export default {
             sortOptions: [
                 {value: 'title', name: 'По названию'},
                 {value: 'body', name: 'По описанию'},
+                // {value: 'id', name: 'По порядку'},
             ],
-            selectedSort: '', // название метода для watch одинаковое
+            selectedSort: '', // название метода (для watch одинаковое)
             searchQuery: '',
             page: 1, // текущая страница
             limit: 5, // лимит постов на странице
@@ -198,24 +201,25 @@ export default {
 }
 
 
-.pagination_wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-.page_item {
-    border: 1px solid green;
-    font-size: 20px;
-    padding: 5px;
-}
-.page_item:hover {
-    color: white;
-    background-color: green;
-    cursor: pointer;
-}
-.current_page {
-    color: white;
-    background-color: green;
-}
+/*.pagination_wrapper {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    gap: 10px;*/
+/*    flex-wrap: wrap;*/
+/*}*/
+/*.page_item {*/
+/*    border: 1px solid green;*/
+/*    font-size: 20px;*/
+/*    padding: 5px;*/
+/*}*/
+/*.page_item:hover {*/
+/*    color: white;*/
+/*    background-color: green;*/
+/*    cursor: pointer;*/
+/*}*/
+/*.current_page {*/
+/*    color: white;*/
+/*    background-color: green;*/
+/*}*/
 </style>
