@@ -4,7 +4,9 @@
                    :title="title"
                    :body="body"
         />
-        <post-list v-bind:posts="posts"/>
+        <post-list v-bind:posts="posts"
+                   @delete="deletePost"
+        />
     </div>
 </template>
 
@@ -30,6 +32,9 @@ export default {
     methods: {
         createPost(post) {
             this.posts.push(post)
+        },
+        deletePost(post) {
+            this.posts.filter(p => p.id !== post.id)
         }
 
         // // createPost(e) {

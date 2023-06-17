@@ -2,7 +2,9 @@
     <div>
         <h3>Список пользователей</h3>
         <post-item :post="post"
-                    v-for="post of posts"
+                   v-for="post in posts"
+                   :key="post.id"
+                   @delete="$emit('delete', post)"
         />
     </div>
 </template>
