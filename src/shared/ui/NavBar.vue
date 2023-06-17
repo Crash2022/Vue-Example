@@ -1,6 +1,8 @@
 <template>
     <div class="navbar_wrapper">
-        <div>Vue 3</div>
+        <div>
+            <router-link to="/">Vue 3</router-link>
+        </div>
         <nav class="navbar_links">
             <div>
                 <router-link to="/posts">Посты</router-link>
