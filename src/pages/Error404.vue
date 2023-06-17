@@ -1,6 +1,6 @@
 <template>
-    <div class="about_page">
-        Здесь будет информация обо мне
+    <div class="not_found">
+        Page Not Found!
     </div>
 </template>
 
@@ -11,8 +11,10 @@ export default {
 </script>
 
 <style scoped>
-.about_page {
+.not_found {
     text-align: center;
     margin-top: 50px;
+    color: red;
+    font-size: 40px;
 }
 </style>

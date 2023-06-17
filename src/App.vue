@@ -1,17 +1,12 @@
 <template>
     <div class="app">
-        <router-view>
-<!--            <main/>-->
-<!--            <posts/>-->
-        </router-view>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-// import Posts from '@/pages/Posts.vue';
 
 export default {
-    // components: {Posts}
 
 };
 </script>
