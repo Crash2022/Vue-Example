@@ -5,17 +5,17 @@
         </custom-modal>
 
         <div class="addPost">
-<!--            <custom-button @click="getPosts">-->
-<!--                Получить посты-->
-<!--            </custom-button>-->
+            <div class="search_input">
+                <custom-input placeholder="Поиск..."/>
+            </div>
+            <div class="sort_select">
+                <custom-select v-model="selectedSort"
+                               :options="sortOptions"
+                />
+            </div>
             <custom-button @click="openModal">
                 Добавить пост
             </custom-button>
-        </div>
-        <div class="sort_select">
-            <custom-select v-model="selectedSort"
-                           :options="sortOptions"
-            />
         </div>
 
         <!--        обычный метод-->
@@ -35,9 +35,11 @@ import PostForm from '@/components/PostForm.vue';
 import PostList from '@/components/PostList.vue';
 import CustomButton from "@/shared/ui/CustomButton.vue";
 import axios from "axios";
+import CustomInput from "@/shared/ui/CustomInput.vue";
 
 export default {
     components: {
+        CustomInput,
         CustomButton,
         PostList, PostForm
     },
@@ -140,23 +142,27 @@ export default {
 .app {
     padding: 20px;
 }
-
-.addPost {
-    display: flex;
-    justify-content: flex-end;
-    /*gap: 10px;*/
-    margin-bottom: 10px;
-}
-
-.sort_select {
-    display: flex;
-    justify-content: flex-end;
-}
-
 .loading_posts {
     text-align: center;
     margin-top: 50px;
     font-size: 30px;
 }
 
+.addPost {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.search_input {
+    width: 100%;
+}
+.search_input input {
+    width: 100%;
+}
+.sort_select {
+    display: flex;
+    /*justify-content: flex-end;*/
+}
 </style>

@@ -18,7 +18,8 @@ export default {
     border: none;
     cursor: pointer;
     height: 38px;
-    min-width: 100px;
+    min-width: 200px;
+    /*width: 100%;*/
     font-size: 20px;
     display: flex;
     align-items: center;
