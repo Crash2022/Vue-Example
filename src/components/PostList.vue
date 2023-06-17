@@ -1,11 +1,13 @@
 <template>
     <div v-if="posts.length > 0">
         <h3 class="post_title">Список постов</h3>
-        <post-item v-for="post in posts"
-                   :post="post"
-                   :key="post.id"
-                   @delete="$emit('delete', post)"
-        />
+        <transition-group name="posts_list">
+            <post-item v-for="post in posts"
+                       :post="post"
+                       :key="post.id"
+                       @delete="$emit('delete', post)"
+            />
+        </transition-group>
     </div>
     <h3 v-else class="no_posts">Постов нет!</h3>
 </template>
@@ -33,5 +35,17 @@ export default {
     color: red;
     text-align: center;
     margin-top: 20px;
+}
+
+.posts_list-move, /* apply transition to moving elements */
+.posts_list-enter-active,
+.posts_list-leave-active {
+    transition: all 0.4s ease;
+}
+
+.posts_list-enter-from,
+.posts_list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
 }
 </style>

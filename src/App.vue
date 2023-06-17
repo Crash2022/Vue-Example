@@ -20,6 +20,8 @@
 
         <!--        обычный метод-->
         <!--        v-bind:posts="posts"-->
+
+        <!--        с использованием computed-->
         <post-list v-bind:posts="sortedPosts"
                    @delete="deletePost"
                    v-if="!isPostsLoading"
