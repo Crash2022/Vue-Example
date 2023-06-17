@@ -37,6 +37,7 @@ export default {
             // название 'create' используется в родительской компонентне (@create)
             // вторым параметром принимает post
             this.$emit('create', this.post)
+
             this.post = {
                 title: '',
                 body: '',

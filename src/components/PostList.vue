@@ -37,10 +37,12 @@ export default {
 .no_posts {
     color: red;
     text-align: center;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
-.posts_list-move, /*для сортировки*/
+/*стили для сортировки*/
+.posts_list-move,
+/*стили для удаления и добавления*/
 .posts_list-enter-active,
 .posts_list-leave-active {
     transition: all 0.4s ease;
