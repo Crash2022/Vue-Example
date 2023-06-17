@@ -3,12 +3,6 @@
         <h1>
             Добро пожаловать!
         </h1>
-        <div>
-            <router-link to="/posts">Посты</router-link>
-        </div>
-        <div>
-            <router-link to="/about">Обо мне</router-link>
-        </div>
     </div>
 </template>
 

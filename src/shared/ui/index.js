@@ -3,6 +3,7 @@ import CustomInput from "@/shared/ui/CustomInput.vue";
 import CustomModal from "@/shared/ui/CustomModal.vue";
 import CustomSelect from "@/shared/ui/CustomSelect.vue";
 import CustomPagination from '@/shared/ui/CustomPagination.vue';
+import NavBar from '@/shared/ui/NavBar.vue';
 
 export default [
     CustomButton,
@@ -10,4 +11,5 @@ export default [
     CustomModal,
     CustomSelect,
     CustomPagination,
+    NavBar
 ]
