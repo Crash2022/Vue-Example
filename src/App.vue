@@ -4,9 +4,14 @@
             <post-form @create="createPost"/>
         </custom-modal>
 
-        <custom-button @click="openModal">
-            Добавить пост
-        </custom-button>
+        <div class="addPost">
+            <custom-button @click="getPosts">
+                Получить посты
+            </custom-button>
+            <custom-button @click="openModal">
+                Добавить пост
+            </custom-button>
+        </div>
         <post-list v-bind:posts="posts"
                    @delete="deletePost"
         />
@@ -17,6 +22,7 @@
 import PostForm from '@/components/PostForm.vue';
 import PostList from '@/components/PostList.vue';
 import CustomButton from "@/shared/ui/CustomButton.vue";
+import axios from "axios";
 
 export default {
     components: {
@@ -43,6 +49,15 @@ export default {
         },
         openModal() {
             this.isModalOpen = true
+        },
+        async getPosts() {
+            try {
+                const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=7')
+                // console.log(response)
+                this.posts = response.data
+            } catch(error) {
+                console.log(error)
+            }
         }
 
         // // createPost(e) {
@@ -77,6 +92,12 @@ export default {
 
 .app {
     padding: 20px;
+}
+
+.addPost {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 </style>
