@@ -30,10 +30,11 @@
         />
         <h3 v-else class="loading_posts">Загрузка постов...</h3>
 
-        <custom-pagination v-model:page="page"
-                           v-model:totalPages="totalPages"
-                           @changePage="changePage"
-        />
+        <!--        <custom-pagination v-model:page="page"-->
+        <!--                           v-model:totalPages="totalPages"-->
+        <!--                           @changePage="changePage"-->
+        <!--        />-->
+
         <!--        <div class="pagination_wrapper">-->
         <!--            <div class="page_item"-->
         <!--                 :class="{-->
@@ -91,10 +92,10 @@ export default {
         openModal() {
             this.isModalOpen = true
         },
-        changePage(pageNumber) {
-            this.page = pageNumber
-            this.getPosts()
-        },
+        // changePage(pageNumber) {
+        //     this.page = pageNumber
+        //     // this.getPosts() // перенесли в watch page() (как иной вариант)
+        // },
         async getPosts() {
             try {
                 this.isPostsLoading = true
@@ -134,6 +135,7 @@ export default {
         //     this.body = e.target.value
         // }
     },
+    // аналог useEffect
     mounted() {
         this.getPosts()
     },
@@ -152,6 +154,11 @@ export default {
         // // isModalOpen(value) {
         // //     console.log(value)
         // // }
+
+        // можно здесь получать посты при изменении страницы
+        // page() {
+        //     this.getPosts()
+        // }
     },
     computed: {
         // название любое, возвращает новый массив
