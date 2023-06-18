@@ -161,7 +161,6 @@ export default {
     // аналог useEffect
     mounted() {
         this.getPosts()
-
         this.getMorePosts()
 
         // observer без кастомной директивы
