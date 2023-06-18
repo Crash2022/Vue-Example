@@ -27,7 +27,7 @@ export default {
             post: {
                 title: '',
                 body: ''
-            }
+            },
         };
     },
     methods: {
