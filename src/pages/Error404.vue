@@ -1,6 +1,11 @@
 <template>
     <div class="not_found">
-        Page Not Found!
+        <div class="title">
+            <h2>Page Not Found!</h2>
+        </div>
+        <div class="link_main">
+            <router-link to="/">Перейти на главную...</router-link>
+        </div>
     </div>
 </template>
 
@@ -12,11 +17,4 @@ export default {
 
 <style lang="scss" scoped>
 @import "../shared/styles/Error404";
-
-//.not_found {
-//    text-align: center;
-//    margin-top: 50px;
-//    color: red;
-//    font-size: 40px;
-//}
 </style>

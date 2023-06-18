@@ -3,4 +3,16 @@
     margin-top: 50px;
     color: red;
     font-size: 40px;
+
+    .title {
+        margin-top: 100px;
+        margin-bottom: 30px;
+    }
+    .link_main {
+        font-size: 20px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
