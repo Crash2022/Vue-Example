@@ -1,21 +1,19 @@
 import axios from 'axios';
 
-export const postModule = {
+export const postsModule = {
+    namespaced: true,
     state: () => ({
         // isModalOpen: false,
         isPostsLoading: false,
-        posts: [
-            // {id: 1, title: 'Javascript', body: 'Описание 1'},
-        ],
+        posts: [],
         sortOptions: [
             {value: 'id', name: 'По порядку'},
             {value: 'title', name: 'По названию'},
             {value: 'body', name: 'По описанию'},
         ],
-        selectedSort: '', // название метода (для watch одинаковое)
+        selectedSort: '',
         searchQuery: '',
         page: 1, // текущая страница
-        // limit: 5, // лимит постов на странице
         limit: 7,
         totalPages: 0 // всего страниц
     }),

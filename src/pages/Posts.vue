@@ -79,10 +79,9 @@ export default {
                 {value: 'body', name: 'По описанию'},
             ],
             selectedSort: '', // название метода (для watch одинаковое)
-            searchQuery: '',
+            searchQuery: '', // поисковая строка
             page: 1, // текущая страница
-            // limit: 5, // лимит постов на странице
-            limit: 7,
+            limit: 7, // лимит постов на странице
             totalPages: 0 // всего страниц
         };
     },

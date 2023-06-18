@@ -7,11 +7,13 @@
         <div class="addPost">
             <div class="search_input">
                 <custom-input placeholder="Поиск поста по названию..."
-                              v-model="searchQuery"
+                              :model-value="searchQuery"
+                              @update:model-value="setSearchQuery"
                 />
             </div>
             <div class="sort_select">
-                <custom-select v-model="selectedSort"
+                <custom-select :model-value="selectedSort"
+                               @update:model-value="setSelectedSort"
                                :options="sortOptions"
                 />
             </div>
@@ -20,6 +22,7 @@
             </custom-button>
         </div>
 
+<!--        пример получения данных из одного общего стора-->
 <!--        <div class="login_button">-->
 <!--            <custom-button @click="store.commit('login')">-->
 <!--                Залогиниться-->
@@ -36,46 +39,20 @@
 <!--            </div>-->
 <!--        </div>-->
 
-
-        <!--        обычный метод-->
-        <!--        v-bind:posts="posts"-->
-
-        <!--        с использованием computed-->
         <post-list v-bind:posts="sortedAndSearchedPosts"
                    @delete="deletePost"
                    v-if="!isPostsLoading"
         />
         <h3 v-else class="loading_posts">Загрузка постов...</h3>
 
-        <!--        вариант observer без директивы-->
-        <!--        <div class="observer" ref="observer"></div>-->
         <div class="observer" v-intersection="getMorePosts"></div>
-
-        <!--        <custom-pagination v-model:page="page"-->
-        <!--                           v-model:totalPages="totalPages"-->
-        <!--                           @changePage="changePage"-->
-        <!--        />-->
-
-        <!--        <div class="pagination_wrapper">-->
-        <!--            <div class="page_item"-->
-        <!--                 :class="{-->
-        <!--                     'current_page': pageNumber === this.page-->
-        <!--                 }"-->
-        <!--                 :key="pageNumber"-->
-        <!--                 v-for="pageNumber in totalPages"-->
-        <!--                 @click="changePage(pageNumber)"-->
-        <!--            >-->
-        <!--                {{pageNumber}}-->
-        <!--            </div>-->
-        <!--        </div>-->
     </div>
 </template>
 
 <script>
 import PostForm from '@/components/PostForm.vue';
 import PostList from '@/components/PostList.vue';
-import axios from "axios";
-// import store from '../store';
+import {mapState, mapGetters, mapMutations, mapActions} from 'vuex';
 
 export default {
     components: {
@@ -84,10 +61,24 @@ export default {
     },
     data() {
         return {
-
+            // весь стейт теперь находится в стор
+            isModalOpen: false,
         };
     },
     methods: {
+        ...mapMutations({
+            setPage: 'posts/setPage',
+            setSearchQuery: 'posts/setSearchQuery',
+            setSelectedSort: 'posts/setSelectedSort',
+        }),
+        ...mapActions({
+            getPosts: 'posts/getPosts',
+            getMorePosts: 'posts/getMorePosts',
+        }),
+
+        openModal() {
+            this.isModalOpen = true
+        },
         createPost(post) {
             this.posts.unshift(post)
             this.isModalOpen = false
@@ -95,10 +86,8 @@ export default {
         deletePost(post) {
             this.posts = this.posts.filter(p => p.id !== post.id)
         },
-        openModal() {
-            this.isModalOpen = true
-        },
 
+        // функции запросов без стора создавались тут
         // // постраничный вывод постов
         // async getPosts() {
         // },
@@ -108,27 +97,36 @@ export default {
     },
     // аналог useEffect
     mounted() {
-        this.getPosts()
-        this.getMorePosts()
+        // без стора запросы делались тут
+        // почему если закомментировать, то всё равно работает?!
+        // this.getPosts()
+        // this.getMorePosts()
     },
     // следит за изменениями, мутирует исходный массив
     watch: {
-
+        // code here
     },
     computed: {
-        // название любое, возвращает новый массив
-        // без сортировки по айди
-        // sortedPosts() {
-        //   return [...this.posts].sort((post1, post2) => {
-        //       return post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])})
-        // },
+        ...mapState({
+            isPostsLoading: state => state.isPostsLoading,
+            posts: state => state.posts,
+            sortOptions: state => state.sortOptions,
+            selectedSort: state => state.selectedSort,
+            searchQuery: state => state.searchQuery,
+            page: state => state.page,
+            limit: state => state.limit,
+            totalPages: state => state.totalPages,
+        }),
+        ...mapGetters({
+            sortedPosts: 'posts/sortedPosts',
+            sortedAndSearchedPosts: 'posts/sortedAndSearchedPosts'
+        })
 
+        // без стора здесь были методы сортировки
         // с сортировкой по айди
         // sortedPosts() {
-        //     return [...this.posts].sort((a, b) => a[this.selectedSort] < b[this.selectedSort] ? -1 : 1)
         // },
         // sortedAndSearchedPosts() {
-        //     return this.sortedPosts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
         // },
     },
 };
