@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const postsModule = {
+    // чтобы можно было использовать префикс модуля для названий mapMutations, mapActions, mapGetters
     namespaced: true,
     state: () => ({
         // isModalOpen: false,
@@ -14,7 +15,7 @@ export const postsModule = {
         selectedSort: '',
         searchQuery: '',
         page: 1, // текущая страница
-        limit: 7,
+        limit: 7, // лимит постов на странице
         totalPages: 0 // всего страниц
     }),
     getters: {

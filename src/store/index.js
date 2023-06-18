@@ -2,6 +2,7 @@ import {createStore} from 'vuex';
 import {postsModule} from '@/store/postsModule';
 
 export default createStore({
+    // один общий стейт
     // state: {
     //     likes: 5,
     //     isAuth: false
@@ -22,6 +23,8 @@ export default createStore({
     // actions: {
     //
     // },
+
+    // разделение на модули (аналог редльюсера)
     modules: {
         posts: postsModule
     }
