@@ -37,12 +37,10 @@ import {useSortedAndSearchedPosts} from '@/shared/hooks/useSortedAndSearchedPost
 
 export default {
     components: {
-        PostList,
-        PostForm,
+        PostList, PostForm,
     },
     data() {
         return {
-            // весь стейт теперь находится в стор
             isModalOpen: false,
             sortOptions: [
                 {value: 'id', name: 'По порядку'},
@@ -104,10 +102,5 @@ export default {
 }
 .sort_select {
     display: flex;
-}
-
-.observer {
-    /*height: 30px;*/
-    /*background-color: yellow;*/
 }
 </style>

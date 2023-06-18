@@ -10,11 +10,13 @@ export default {
 };
 </script>
 
-<style scoped>
-.not_found {
-    text-align: center;
-    margin-top: 50px;
-    color: red;
-    font-size: 40px;
-}
+<style lang="scss" scoped>
+@import "../shared/styles/Error404";
+
+//.not_found {
+//    text-align: center;
+//    margin-top: 50px;
+//    color: red;
+//    font-size: 40px;
+//}
 </style>
