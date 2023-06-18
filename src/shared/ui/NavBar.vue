@@ -5,7 +5,10 @@
         </div>
         <nav class="navbar_links">
             <div class="post_button">
-                <custom-button @click="$router.push('/posts')">Посты</custom-button>
+                <custom-button @click="$router.push('/posts-store')">Посты VueX</custom-button>
+            </div>
+            <div>
+                <router-link to="/posts">Посты</router-link>
             </div>
             <div>
                 <router-link to="/about">Обо мне</router-link>

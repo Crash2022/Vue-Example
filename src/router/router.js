@@ -4,6 +4,7 @@ import Posts from '@/pages/Posts.vue';
 import Post from '@/pages/Post.vue';
 import About from '@/pages/About.vue';
 import Error404 from '@/pages/Error404.vue';
+import PostsWithStore from '@/pages/PostsWithStore.vue';
 
 
 const routes = [
@@ -14,6 +15,10 @@ const routes = [
     {
         path: '/posts',
         component: Posts
+    },
+    {
+        path: '/posts-store',
+        component: PostsWithStore
     },
     {
         path: '/posts/:id',
