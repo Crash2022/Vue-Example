@@ -5,15 +5,17 @@
             <div><strong>Название:</strong> {{ post.title }}</div>
             <div><strong>Описание:</strong> {{ post.body }}</div>
         </div>
-        <div class="post_open">
-            <custom-button @click="$router.push(`/posts/${post.id}`)">
-                Открыть
-            </custom-button>
-        </div>
-        <div class="post_delete">
-            <custom-button @click="$emit('delete', post)">
-                Удалить
-            </custom-button>
+        <div class="post_buttons">
+            <div class="post_open">
+                <custom-button @click="$router.push(`/posts/${post.id}`)">
+                    Открыть
+                </custom-button>
+            </div>
+            <div class="post_delete">
+                <custom-button @click="$emit('delete', post)">
+                    Удалить
+                </custom-button>
+            </div>
         </div>
     </div>
 </template>
@@ -41,6 +43,11 @@ export default {
 }
 .post_content {
 
+}
+.post_buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .post_open button {
     background-color: orange;
