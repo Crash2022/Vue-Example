@@ -7,6 +7,9 @@
             <div class="post_button">
                 <custom-button @click="$router.push('/posts-store')">Посты VueX</custom-button>
             </div>
+            <div class="post_button">
+                <custom-button @click="$router.push('/posts-composition')">Посты CompAPI</custom-button>
+            </div>
             <div>
                 <router-link to="/posts">Посты</router-link>
             </div>
