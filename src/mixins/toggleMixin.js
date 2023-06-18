@@ -11,6 +11,6 @@ export default {
         }
     },
     mounted() {
-
+        // code here
     }
 }

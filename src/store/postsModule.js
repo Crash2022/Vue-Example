@@ -3,6 +3,7 @@ import axios from 'axios';
 export const postsModule = {
     // чтобы можно было использовать префикс модуля для названий mapMutations, mapActions, mapGetters
     namespaced: true,
+    // стейт
     state: () => ({
         // isModalOpen: false,
         isPostsLoading: false,
@@ -19,6 +20,7 @@ export const postsModule = {
         limit: 7, // лимит постов на странице
         totalPages: 0 // всего страниц
     }),
+    // функции для работы с данными из стейта
     getters: {
         sortedPosts(state) {
             return [...state.posts].sort((a, b) => a[state.selectedSort] < b[state.selectedSort] ? -1 : 1)
@@ -27,6 +29,7 @@ export const postsModule = {
             return getters.sortedPosts.filter(post => post.title.toLowerCase().includes(state.searchQuery.toLowerCase()))
         },
     },
+    // функции для изменения стейта
     mutations: {
         setPostsIsLoading(state, isPostsLoading) {
             state.isPostsLoading = isPostsLoading
@@ -47,6 +50,7 @@ export const postsModule = {
             state.totalPages = totalPages
         },
     },
+    // как thunk in React?!
     actions: {
         // постраничный вывод постов
         async getPosts({state, commit}) {

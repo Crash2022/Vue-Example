@@ -37,7 +37,8 @@ import {useSortedAndSearchedPosts} from '@/shared/hooks/useSortedAndSearchedPost
 
 export default {
     components: {
-        PostList, PostForm,
+        PostList,
+        PostForm,
     },
     data() {
         return {
