@@ -112,14 +112,14 @@ export default {
     },
     computed: {
         ...mapState({
-            isPostsLoading: state => state.isPostsLoading,
-            posts: state => state.posts,
-            // sortOptions: state => state.sortOptions,
-            selectedSort: state => state.selectedSort,
-            searchQuery: state => state.searchQuery,
-            page: state => state.page,
-            limit: state => state.limit,
-            totalPages: state => state.totalPages,
+            isPostsLoading: state => state.posts.isPostsLoading,
+            posts: state => state.posts.posts,
+            // sortOptions: state => state.posts.sortOptions,
+            selectedSort: state => state.posts.selectedSort,
+            searchQuery: state => state.posts.searchQuery,
+            page: state => state.posts.page,
+            limit: state => state.posts.limit,
+            totalPages: state => state.posts.totalPages,
         }),
         ...mapGetters({
             sortedPosts: 'posts/sortedPosts',
