@@ -6,12 +6,10 @@
                           type="text"
                           placeholder="Название"
                           v-focus
-                          name="title"
             />
             <custom-input v-model="post.body"
                           type="text"
                           placeholder="Описание"
-                          name="body"
             />
             <custom-button class="add_button"
                            @click="createPost"
@@ -23,8 +21,6 @@
 </template>
 
 <script>
-import {addPostFormSchema} from '@/shared/validation/validation';
-
 export default {
     data() {
         return {
