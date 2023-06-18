@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import toggleMixin from '@/mixins/toggleMixin';
+import toggleMixin from '@/shared/mixins/toggleMixin';
 
 export default {
     name: 'custom-modal',

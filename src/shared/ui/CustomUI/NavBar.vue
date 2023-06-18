@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import CustomButton from '@/shared/ui/CustomButton.vue';
+import CustomButton from '@/shared/ui/CustomUI/CustomButton.vue';
 
 export default {
     name: 'navbar',
