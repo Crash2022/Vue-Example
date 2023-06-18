@@ -20,6 +20,23 @@
             </custom-button>
         </div>
 
+        <div class="login_button">
+            <custom-button @click="store.commit('login')">
+                Залогиниться
+            </custom-button>
+        </div>
+
+        <div v-if="store.state.isAuth">
+            <div>Likes: {{ store.state.likes }}</div>
+            <div>DoubleLikes: {{ store.getters.doubleLikes }}</div>
+            <div>
+                <custom-button @click="store.commit('incrementLikes')">
+                    Увеличить лайки
+                </custom-button>
+            </div>
+        </div>
+
+
         <!--        обычный метод-->
         <!--        v-bind:posts="posts"-->
 
@@ -58,6 +75,7 @@
 import PostForm from '@/components/PostForm.vue';
 import PostList from '@/components/PostList.vue';
 import axios from "axios";
+import store from '../store';
 
 export default {
     components: {
@@ -200,6 +218,9 @@ export default {
         // }
     },
     computed: {
+        store() {
+            return store
+        },
         // название любое, возвращает новый массив
         // без сортировки по айди
         // sortedPosts() {
@@ -228,6 +249,10 @@ export default {
     margin-top: 50px;
     margin-bottom: 20px;
     font-size: 30px;
+}
+
+.login_button {
+    margin-bottom: 10px;
 }
 
 .addPost {
