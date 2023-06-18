@@ -63,6 +63,11 @@ export default {
         return {
             // весь стейт теперь находится в стор
             isModalOpen: false,
+            sortOptions: [
+                {value: 'id', name: 'По порядку'},
+                {value: 'title', name: 'По названию'},
+                {value: 'body', name: 'По описанию'},
+            ],
         };
     },
     methods: {
@@ -97,9 +102,8 @@ export default {
     },
     // аналог useEffect
     mounted() {
-        // без стора запросы делались тут
-        // почему если закомментировать, то всё равно работает?!
-        this.getPosts()
+        // без стора оба запроса делались тут
+        this.getPosts() // из стора вызывается функция, а дальше observer вызывает вторую функцию
         // this.getMorePosts()
     },
     // следит за изменениями, мутирует исходный массив
@@ -110,7 +114,7 @@ export default {
         ...mapState({
             isPostsLoading: state => state.isPostsLoading,
             posts: state => state.posts,
-            sortOptions: state => state.sortOptions,
+            // sortOptions: state => state.sortOptions,
             selectedSort: state => state.selectedSort,
             searchQuery: state => state.searchQuery,
             page: state => state.page,
