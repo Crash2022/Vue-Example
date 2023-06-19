@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import PostForm from '@/components/PostForm.vue';
+import PostForm from '@/components/PostFormV.vue';
 import PostList from '@/components/PostList.vue';
 import {usePosts} from '@/shared/hooks/usePosts';
 import {useSortedPosts} from '@/shared/hooks/useSortedPosts';

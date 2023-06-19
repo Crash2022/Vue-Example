@@ -1,47 +1,18 @@
 <template>
-    <form @submit.prevent="onSubmit" class="form_wrapper">
+    <form @submit.prevent class="form_wrapper">
         <h3 class="addPost_title">Создать пост</h3>
         <div class="add_form">
-            <div class="form_input">
-                <custom-input v-model="title.value"
-                              :ref="title.ref"
-                              type="text"
-                              placeholder="Название"
-                              v-focus
-                              name="title"
-                />
-<!--                <p v-if="title.error"-->
-<!--                   class="input_error"-->
-<!--                >-->
-<!--                    {{ title.error.message }}-->
-<!--                </p>-->
-                <p v-if="title.error"
-                   class="input_error"
-                >
-                    {{ 'Поле обязательно для заполнения' }}
-                </p>
-            </div>
-            <div class="form_input">
-                <custom-input v-model="body.value"
-                              :ref="body.ref"
-                              type="text"
-                              placeholder="Описание"
-                              name="body"
-                />
-<!--                <p v-if="title.error"-->
-<!--                   class="input_error"-->
-<!--                >-->
-<!--                    {{ body.error.message }}-->
-<!--                </p>-->
-                <p v-if="body.error"
-                   class="input_error"
-                >
-                    {{ 'Поле обязательно для заполнения' }}
-                </p>
-            </div>
-
+            <custom-input v-model="post.title"
+                          type="text"
+                          placeholder="Название"
+                          v-focus
+            />
+            <custom-input v-model="post.body"
+                          type="text"
+                          placeholder="Описание"
+            />
             <custom-button class="add_button"
-                           type="submit"
+                           @click="createPost"
             >
                 Создать
             </custom-button>
@@ -50,58 +21,31 @@
 </template>
 
 <script>
-import {useForm} from 'vue-hooks-form';
-
 export default {
     data() {
         return {
-
-        }
-    },
-    methods: {
-
-    },
-    setup(props, {emit}) {
-        const {useField, handleSubmit, errors} = useForm({
-            defaultValues: {
+            post: {
                 title: '',
                 body: ''
             },
-        })
-
-        const id = Date.now()
-        const title = useField('title', {
-            rule: {
-                required: true,
-                // min: 6,
-                // max: 30,
-            },
-            error: {
-                message: 'Поле обязательно для заполнения'
-            }
-        })
-        const body = useField('body', {
-            rule: {
-                required: true,
-            },
-        })
-
-        const onSubmit = (submitData) => {
-            const post = {
-                id,
-                title: submitData.title,
-                body: submitData.body,
-            }
-            emit('create', post)
-        }
-
-        return {
-            title, body,
-            // errors,
-            onSubmit: handleSubmit(onSubmit),
-        }
+        };
     },
-}
+    methods: {
+        createPost() {
+            this.post.id = Date.now()
+
+            // подписка на событие (для передачи из дочерней в родительскую)
+            // название 'create' используется в родительской компонентне (@create)
+            // вторым параметром принимает post
+            this.$emit('create', this.post)
+
+            this.post = {
+                title: '',
+                body: '',
+            }
+        },
+    }
+};
 </script>
 
 <style scoped>
@@ -121,20 +65,11 @@ export default {
 .add_form input {
     width: 100%;
 }
-.form_input {
-    width: 100%;
-    height: 64px;
-}
-.input_error {
-    color: red;
-    text-align: center;
-    margin-top: 4px;
-}
 .add_button {
     padding: 5px;
     cursor: pointer;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 </style>
 
