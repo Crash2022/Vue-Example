@@ -10,6 +10,12 @@
             <div class="post_button">
                 <custom-button @click="$router.push('/posts-composition')">Посты CompAPI</custom-button>
             </div>
+            <div class="post_button">
+                <custom-button @click="$router.push('/posts-composition-2')">Посты CompAPI-2</custom-button>
+            </div>
+            <div>
+                <router-link to="/store">Store</router-link>
+            </div>
             <div>
                 <router-link to="/posts">Посты</router-link>
             </div>
