@@ -72,10 +72,10 @@ export default {
     setup() {
         const {useField, handleSubmit} = useForm({
             defaultValues: {
-                post: {
-                    title: '',
-                    body: ''
-                },
+                // post: {
+                //     title: '',
+                //     body: ''
+                // },
             },
         })
         const title = useField('title', {
@@ -92,7 +92,6 @@ export default {
         })
         const onSubmit = (data) => {
             console.log(data)
-            // this.methods.createPost()
 
             this.post.id = Date.now()
             this.$emit('create', this.post)
