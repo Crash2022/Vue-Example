@@ -63,11 +63,6 @@ export default {
         return {
             // весь стейт теперь находится в стор
             isModalOpen: false,
-            sortOptions: [
-                {value: 'id', name: 'По порядку'},
-                {value: 'title', name: 'По названию'},
-                {value: 'body', name: 'По описанию'},
-            ],
         };
     },
     methods: {
@@ -114,7 +109,7 @@ export default {
         ...mapState({
             isPostsLoading: state => state.posts.isPostsLoading,
             posts: state => state.posts.posts,
-            // sortOptions: state => state.posts.sortOptions,
+            sortOptions: state => state.posts.sortOptions,
             selectedSort: state => state.posts.selectedSort,
             searchQuery: state => state.posts.searchQuery,
             page: state => state.posts.page,

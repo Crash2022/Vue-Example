@@ -8,12 +8,11 @@ export const postsModule = {
         // isModalOpen: false,
         isPostsLoading: false,
         posts: [],
-        // из стор опции сортировки не видны?!
-        // sortOptions: [
-        //     {value: 'id', name: 'По порядку'},
-        //     {value: 'title', name: 'По названию'},
-        //     {value: 'body', name: 'По описанию'},
-        // ],
+        sortOptions: [
+            {value: 'id', name: 'По порядку'},
+            {value: 'title', name: 'По названию'},
+            {value: 'body', name: 'По описанию'},
+        ],
         selectedSort: '',
         searchQuery: '',
         page: 1, // текущая страница
