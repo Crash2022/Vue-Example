@@ -43,6 +43,8 @@ export default {
     watch: {
         // code here
     },
+    // в отличие от methods, не делает лишние перерисовки соседних элементов
+    // (аналог useCallback)
     computed: {
         // store() {
         //     return store.state
