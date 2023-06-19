@@ -10,7 +10,11 @@
                               v-focus
                               name="title"
                 />
-                <!--<p v-if="title.error">{{ title.error.message }}</p>-->
+<!--                <p v-if="title.error"-->
+<!--                   class="input_error"-->
+<!--                >-->
+<!--                    {{ title.error.message }}-->
+<!--                </p>-->
                 <p v-if="title.error"
                    class="input_error"
                 >
@@ -24,7 +28,11 @@
                               placeholder="Описание"
                               name="body"
                 />
-                <!--<p v-if="body.error">{{ body.error.message }}</p>-->
+<!--                <p v-if="title.error"-->
+<!--                   class="input_error"-->
+<!--                >-->
+<!--                    {{ body.error.message }}-->
+<!--                </p>-->
                 <p v-if="body.error"
                    class="input_error"
                 >
@@ -53,9 +61,8 @@ export default {
     methods: {
 
     },
-
     setup(props, {emit}) {
-        const {useField, handleSubmit} = useForm({
+        const {useField, handleSubmit, errors} = useForm({
             defaultValues: {
                 title: '',
                 body: ''
@@ -69,6 +76,9 @@ export default {
                 // min: 6,
                 // max: 30,
             },
+            error: {
+                message: 'Поле обязательно для заполнения'
+            }
         })
         const body = useField('body', {
             rule: {
@@ -87,6 +97,7 @@ export default {
 
         return {
             title, body,
+            // errors,
             onSubmit: handleSubmit(onSubmit),
         }
     },
