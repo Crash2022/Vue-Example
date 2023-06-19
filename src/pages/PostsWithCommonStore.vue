@@ -2,16 +2,16 @@
     <div class="posts_page">
 <!--        пример получения данных из одного общего стора-->
         <div class="login_button">
-            <custom-button @click="$store.commit('login')">
+            <custom-button @click="store.commit('login')">
                 Залогиниться
             </custom-button>
         </div>
 
-        <div v-if="$store.state.isAuth">
-            <div>Likes: {{ $store.state.likes }}</div>
-            <div>DoubleLikes: {{ $store.getters.doubleLikes }}</div>
+        <div v-if="store.state.isAuth">
+            <div>Likes: {{ store.state.likes }}</div>
+            <div>DoubleLikes: {{ store.getters.doubleLikes }}</div>
             <div>
-                <custom-button @click="$store.commit('incrementLikes')">
+                <custom-button @click="store.commit('incrementLikes')">
                     Увеличить лайки
                 </custom-button>
             </div>
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-
 import store from '@/store';
 
 export default {
@@ -46,8 +45,14 @@ export default {
     // в отличие от methods, не делает лишние перерисовки соседних элементов
     // (аналог useCallback)
     computed: {
+        // вариант с импортом стора
+        store() {
+            return store
+        }
+
+        // вариант без импорта стора
         // store() {
-        //     return store.state
+        //     return this.$store.state
         // }
     },
 };
